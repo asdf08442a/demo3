@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <springProperty scope="context" name="project" source="project"/>
+    <springProperty scope="context" name="log.path" source="log.path"/>
+    <springProperty scope="context" name="log.level" source="log.level"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${project}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${project}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [requestId=%X{requestId}] %-5level %logger{50} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <logger name="com.enterprise" level="${log.level}"/>
+
+    <root>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

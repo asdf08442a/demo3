@@ -6,11 +6,6 @@ import com.enterprise.demo.dataobject.ro.UserRegisterRO;
 
 import java.util.Map;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午4:15 2018/3/16
- * @Description:
- */
 public interface UserService {
 
     // 管理员登录

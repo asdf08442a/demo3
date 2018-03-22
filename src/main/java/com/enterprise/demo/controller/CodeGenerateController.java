@@ -2,7 +2,7 @@ package com.enterprise.demo.controller;
 
 import com.enterprise.demo.dataobject.vo.ResultVO;
 import com.enterprise.demo.utils.CodeGenerator;
-import com.enterprise.demo.utils.ResultVOUtil;
+import com.enterprise.demo.utils.ResultVOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Map;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午9:25 2018/3/18
- * @Description:
- */
 @Controller
 @RequestMapping("/code")
 public class CodeGenerateController {
@@ -52,9 +47,9 @@ public class CodeGenerateController {
             CodeGenerator.genService(modelName);
             CodeGenerator.genController(modelName);
         } catch (Exception e) {
-            return ResultVOUtil.returnFail();
+            return ResultVOUtils.returnFail();
         }
-        return ResultVOUtil.returnSuccess("sql_name", sqlName);
+        return ResultVOUtils.returnSuccess("sql_name", sqlName);
     }
 
     @GetMapping("/download_sql/{sqlName}")

@@ -4,7 +4,7 @@ package com.enterprise.demo.exception.handler;
 import com.enterprise.demo.dataobject.vo.ResultVO;
 import com.enterprise.demo.enums.ResultEnum;
 import com.enterprise.demo.exception.ServiceException;
-import com.enterprise.demo.utils.ResultVOUtil;
+import com.enterprise.demo.utils.ResultVOUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,11 +14,6 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午10:27 2018/2/23
- * @Description: 统一异常拦截
- */
 @ControllerAdvice
 @Slf4j
 public class AllExceptionHandler {
@@ -28,14 +23,14 @@ public class AllExceptionHandler {
     public ResultVO handlerException(HttpServletRequest request, Exception e) {
         log.error("【异常拦截】" + "[" + request.getRequestURI() + "]" + "接口出现错误," + e.getMessage());
         if (e instanceof ServiceException) { //业务异常 如账号密码错误
-            return ResultVOUtil.returnFail(((ServiceException) e).getCode(), e.getMessage());
+            return ResultVOUtils.returnFail(((ServiceException) e).getCode(), e.getMessage());
         } else if (e instanceof NoHandlerFoundException) { //404接口不存在
-            return ResultVOUtil.returnFail(ResultEnum.NO_HANDLER.getCode(), ResultEnum.NO_HANDLER.getMessage());
+            return ResultVOUtils.returnFail(ResultEnum.NO_HANDLER.getCode(), ResultEnum.NO_HANDLER.getMessage());
         } else if (e instanceof ServletException) { //400接口报错
-            return ResultVOUtil.returnFail(ResultEnum.FAIL.getCode(), ResultEnum.FAIL.getMessage());
+            return ResultVOUtils.returnFail(ResultEnum.FAIL.getCode(), ResultEnum.FAIL.getMessage());
         } else { //500错误
             log.error("", e);
-            return ResultVOUtil.returnFail(ResultEnum.SERVER_ERROR.getCode(), ResultEnum.SERVER_ERROR.getMessage());
+            return ResultVOUtils.returnFail(ResultEnum.SERVER_ERROR.getCode(), ResultEnum.SERVER_ERROR.getMessage());
         }
     }
 

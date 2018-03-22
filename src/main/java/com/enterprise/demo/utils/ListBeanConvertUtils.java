@@ -5,12 +5,7 @@ import org.springframework.beans.BeanUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午12:15 2018/2/24
- * @Description: beanList的转换器
- */
-public class ListBeanConvertUtil {
+public class ListBeanConvertUtils {
 
     public static <T, V extends Object> T convert(V v, Class<T> classT) {
         T t = null;

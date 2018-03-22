@@ -7,12 +7,7 @@ import com.enterprise.demo.enums.ResultEnum;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author: WireChen
- * @Date: Created in 上午11:23 2018/2/24
- * @Description:
- */
-public class ResultVOUtil {
+public class ResultVOUtils {
 
     public static ResultVO returnSuccess(Object object) {
         ResultVO resultVO = new ResultVO();

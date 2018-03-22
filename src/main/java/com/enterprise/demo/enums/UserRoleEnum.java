@@ -3,11 +3,6 @@ package com.enterprise.demo.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午3:58 2018/3/16
- * @Description:
- */
 @AllArgsConstructor
 @Getter
 public enum UserRoleEnum {

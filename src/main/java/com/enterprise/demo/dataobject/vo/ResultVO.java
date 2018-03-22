@@ -5,11 +5,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * @Author: WireChen
- * @Date: Created in 上午11:13 2018/2/24
- * @Description:
- */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultVO<T> implements Serializable {

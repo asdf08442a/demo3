@@ -5,11 +5,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午4:27 2018/3/16
- * @Description:
- */
 @Data
 public class UserRegisterRO {
 

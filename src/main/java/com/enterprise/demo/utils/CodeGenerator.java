@@ -11,15 +11,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
 /**
- * @Author: WireChen
- * @Date: Created in 下午5:27 2018/3/9
- * @Description: 代码生成脚本
+ * 代码生成脚本
  */
 public class CodeGenerator {
 
-    public static final String BASE_PACKAGE = "com.company.demo";//项目基础包名称，根据自己公司的项目修改
+    public static final String BASE_PACKAGE = "com.enterprise.demo";//项目基础包名称，根据自己公司的项目修改
 
     public static final String MODEL_PACKAGE = BASE_PACKAGE + ".dataobject.model";//Model所在包
     public static final String VO_PACKAGE = BASE_PACKAGE + ".dataobject.vo";//VO所在包

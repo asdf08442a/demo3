@@ -9,11 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Date;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午3:41 2018/3/16
- * @Description:
- */
 @Entity
 @DynamicUpdate
 @Data

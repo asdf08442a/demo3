@@ -3,11 +3,6 @@ package com.enterprise.demo.exception;
 import com.enterprise.demo.enums.ResultEnum;
 import lombok.Getter;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午10:26 2018/2/23
- * @Description: 业务异常类
- */
 @Getter
 public class ServiceException extends RuntimeException {
 

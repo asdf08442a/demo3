@@ -6,8 +6,8 @@ import com.enterprise.demo.dataobject.ro.UserRegisterRO;
 import com.enterprise.demo.dataobject.vo.ResultVO;
 import com.enterprise.demo.enums.ResultEnum;
 import com.enterprise.demo.service.UserService;
-import com.enterprise.demo.utils.ROValidUtil;
-import com.enterprise.demo.utils.ResultVOUtil;
+import com.enterprise.demo.utils.ROValidUtils;
+import com.enterprise.demo.utils.ResultVOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.Map;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午5:02 2018/3/16
- * @Description:
- */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -41,9 +36,9 @@ public class UserController {
     public ResultVO userLogin(@RequestBody UserLoginRO userLoginRO) {
         Map<String, Object> loginMap = userService.normalUserLogin(userLoginRO);
         if (loginMap.get("error") == null) {
-            return ResultVOUtil.returnSuccess(loginMap);
+            return ResultVOUtils.returnSuccess(loginMap);
         }
-        return ResultVOUtil.returnFail((ResultEnum) loginMap.get("error"));
+        return ResultVOUtils.returnFail((ResultEnum) loginMap.get("error"));
     }
 
     /**
@@ -54,12 +49,12 @@ public class UserController {
      */
     @PostMapping("/register")
     public ResultVO userRegister(@Valid @RequestBody UserRegisterRO userRegisterRO, BindingResult result) {
-        ROValidUtil.valid(result);
+        ROValidUtils.valid(result);
         User user = userService.normalUserRegister(userRegisterRO);
         if (user != null) {
-            return ResultVOUtil.returnSuccess();
+            return ResultVOUtils.returnSuccess();
         } else {
-            return ResultVOUtil.returnFail();
+            return ResultVOUtils.returnFail();
         }
     }
 

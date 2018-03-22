@@ -10,12 +10,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 
-/**
- * @Author: WireChen
- * @Date: Created in 下午4:16 2018/2/6
- * @Description:
- */
-public class JWTUtil {
+public class JWTUtils {
 
     private static final String JWT_ID = "jwt";
     private final static String JWT_SECRET = "secret";
@@ -40,7 +35,7 @@ public class JWTUtil {
      * @return
      * @throws Exception
      */
-    public static String createJWT(String subject) throws Exception {
+    public static String createJWT(String subject) {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
         Date exp = new Date(nowMillis + JWT_TTL);
@@ -61,7 +56,7 @@ public class JWTUtil {
      * @return
      * @throws Exception
      */
-    public static Object parseJWT(String jwt) throws Exception {
+    public static Object parseJWT(String jwt) {
         SecretKey key = generalKey();
         Claims claims = Jwts.parser()
                 .setSigningKey(key)

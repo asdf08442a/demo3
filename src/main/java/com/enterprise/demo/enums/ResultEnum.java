@@ -3,11 +3,6 @@ package com.enterprise.demo.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * @Author: WireChen
- * @Date: Created in 上午11:43 2018/2/24
- * @Description:
- */
 @AllArgsConstructor
 @Getter
 public enum ResultEnum {

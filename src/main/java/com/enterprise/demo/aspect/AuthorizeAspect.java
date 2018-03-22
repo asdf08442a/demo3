@@ -3,7 +3,7 @@ package com.enterprise.demo.aspect;
 import com.alibaba.fastjson.JSON;
 import com.enterprise.demo.enums.ResultEnum;
 import com.enterprise.demo.exception.ServiceException;
-import com.enterprise.demo.utils.JWTUtil;
+import com.enterprise.demo.utils.JWTUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.extern.slf4j.Slf4j;
@@ -18,11 +18,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * @Author: WireChen
- * @Date: Created in 上午11:31 2018/3/15
- * @Description: 权限认证拦截
- */
 @Component
 @Aspect
 @Slf4j
@@ -35,7 +30,7 @@ public class AuthorizeAspect {
     /**
      * 拦截接口除了登录/注册接口
      */
-    @Pointcut("execution(public * com.company.demo.controller.*Controller.*(..))" +
+    @Pointcut("execution(public * com.enterprise.demo.controller.*Controller.*(..))" +
             "&& !execution(public * com.enterprise.demo.controller.UserController.userLogin(..))" +
             "&& !execution(public * com.enterprise.demo.controller.UserController.userRegister(..))")
     public void verifyAuthorize() {
@@ -48,7 +43,7 @@ public class AuthorizeAspect {
         request.setAttribute("start_time", System.currentTimeMillis());
         if (!"dev".equals(env)) { //开发环境不进行auth认证
             try {
-                if (JWTUtil.parseJWT(request.getHeader(tokenName)) == null) {
+                if (JWTUtils.parseJWT(request.getHeader(tokenName)) == null) {
                     log.warn("签名认证失败，请求接口：{}，请求IP：{}，请求参数：{}",
                             request.getRequestURI(), getIpAddress(request), JSON.toJSONString(request.getParameterMap()));
                     throw new ServiceException(ResultEnum.AUTH_ERROR);

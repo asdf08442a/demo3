@@ -1,19 +1,20 @@
 package com.enterprise.demo.service;
 
 import com.enterprise.demo.dataobject.model.User;
-import com.enterprise.demo.dataobject.ro.UserLoginRO;
-import com.enterprise.demo.dataobject.ro.UserRegisterRO;
+import com.enterprise.demo.dataobject.ro.GetUserByPhoneRO;
+import com.enterprise.demo.dataobject.ro.LoginRO;
+import com.enterprise.demo.dataobject.ro.RegisterRO;
 
 import java.util.Map;
 
 public interface UserService {
 
-    // 管理员登录
-    Boolean adminUserLogin(UserLoginRO userLoginRO);
-
     // 普通用户登录
-    Map<String, Object> normalUserLogin(UserLoginRO userLoginRO);
+    Map<String, Object> login(LoginRO loginRO);
 
     // 用户注册
-    User normalUserRegister(UserRegisterRO userRegisterRO);
+    User register(RegisterRO registerRO);
+
+    // 根据手机号查询用户
+    User getByPhone(GetUserByPhoneRO getUserByPhoneRO);
 }

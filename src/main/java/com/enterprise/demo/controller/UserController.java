@@ -1,8 +1,9 @@
 package com.enterprise.demo.controller;
 
 import com.enterprise.demo.dataobject.model.User;
-import com.enterprise.demo.dataobject.ro.UserLoginRO;
-import com.enterprise.demo.dataobject.ro.UserRegisterRO;
+import com.enterprise.demo.dataobject.ro.GetUserByPhoneRO;
+import com.enterprise.demo.dataobject.ro.LoginRO;
+import com.enterprise.demo.dataobject.ro.RegisterRO;
 import com.enterprise.demo.dataobject.vo.ResultVO;
 import com.enterprise.demo.enums.ResultEnum;
 import com.enterprise.demo.service.UserService;
@@ -29,12 +30,12 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param userLoginRO
+     * @param loginRO
      * @return
      */
     @PostMapping("/login")
-    public ResultVO userLogin(@RequestBody UserLoginRO userLoginRO) {
-        Map<String, Object> loginMap = userService.normalUserLogin(userLoginRO);
+    public ResultVO login(@RequestBody LoginRO loginRO) {
+        Map<String, Object> loginMap = userService.login(loginRO);
         if (loginMap.get("error") == null) {
             return ResultVOUtils.returnSuccess(loginMap);
         }
@@ -44,18 +45,31 @@ public class UserController {
     /**
      * 用户注册
      *
-     * @param userRegisterRO
+     * @param registerRO
      * @return
      */
     @PostMapping("/register")
-    public ResultVO userRegister(@Valid @RequestBody UserRegisterRO userRegisterRO, BindingResult result) {
+    public ResultVO register(@Valid @RequestBody RegisterRO registerRO, BindingResult result) {
         ROValidUtils.valid(result);
-        User user = userService.normalUserRegister(userRegisterRO);
+        User user = userService.register(registerRO);
         if (user != null) {
             return ResultVOUtils.returnSuccess();
         } else {
             return ResultVOUtils.returnFail();
         }
+    }
+
+    /**
+     * 根据手机号查询用户
+     *
+     * @param getUserByPhoneRO
+     * @return
+     */
+    @PostMapping("/getByPhone")
+    public ResultVO getByPhone(@Valid @RequestBody GetUserByPhoneRO getUserByPhoneRO, BindingResult result) {
+        ROValidUtils.valid(result);
+        User user = userService.getByPhone(getUserByPhoneRO);
+        return ResultVOUtils.returnSuccess(user);
     }
 
 }

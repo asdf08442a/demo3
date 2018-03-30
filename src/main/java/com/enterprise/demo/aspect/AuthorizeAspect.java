@@ -30,9 +30,9 @@ public class AuthorizeAspect {
     /**
      * 拦截接口除了登录/注册接口
      */
-    @Pointcut("execution(public * com.enterprise.demo.controller.*Controller.*(..))" +
-            "&& !execution(public * com.enterprise.demo.controller.UserController.userLogin(..))" +
-            "&& !execution(public * com.enterprise.demo.controller.UserController.userRegister(..))")
+    @Pointcut("execution(public * com.enterprise.demo.controller.*.*(..))" +
+            "&& !execution(public * com.enterprise.demo.controller.UserController.login(..))" +
+            "&& !execution(public * com.enterprise.demo.controller.UserController.register(..))")
     public void verifyAuthorize() {
     }
 
@@ -90,7 +90,7 @@ public class AuthorizeAspect {
             ip = request.getRemoteAddr();
         }
         // 如果是多级代理，那么取第一个ip为客户端ip
-        if (ip != null && ip.indexOf(",") != -1) {
+        if (ip != null && ip.contains(",")) {
             ip = ip.substring(0, ip.indexOf(",")).trim();
         }
 

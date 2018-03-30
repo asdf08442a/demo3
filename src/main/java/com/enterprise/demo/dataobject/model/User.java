@@ -6,8 +6,9 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @DynamicUpdate
@@ -15,7 +16,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String username;
@@ -29,8 +30,8 @@ public class User {
     //0 超级管理员  1 普通用户
     private Integer role = UserRoleEnum.NORMAL.getCode();
 
-    private Date createTime;
+    private LocalDateTime createTime;
 
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
 }

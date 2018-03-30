@@ -3,7 +3,6 @@ package com.enterprise.demo.controller;
 import com.enterprise.demo.dataobject.vo.ResultVO;
 import com.enterprise.demo.utils.CodeGenerator;
 import com.enterprise.demo.utils.ResultVOUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/code")
 public class CodeGenerateController {
 
-    @Value("${server.context-path}")
+    //    @Value("${server.context-path}")
     private String path;
 
     @GetMapping("/index")

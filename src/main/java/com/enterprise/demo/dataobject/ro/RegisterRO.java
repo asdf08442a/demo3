@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class UserRegisterRO {
+public class RegisterRO {
 
     @NotNull(message = "用户名不能为空")
     private String username;

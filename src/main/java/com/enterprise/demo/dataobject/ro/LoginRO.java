@@ -3,7 +3,7 @@ package com.enterprise.demo.dataobject.ro;
 import lombok.Data;
 
 @Data
-public class UserLoginRO {
+public class LoginRO {
 
     private String username;
 
